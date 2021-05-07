@@ -21,7 +21,9 @@ let tests = [
       let names = ["Linux"; "Darwin"; "MINGW32_NT-10.0"] in
       if not @@ List.mem uname.sysname names then
         Alcotest.failf "sysname: got %s" uname.sysname;
-      Alcotest.(check string) "machine" "x86_64" uname.machine;
+      let machines = ["x86_64"; "arm64"] in
+      if not @@ List.mem uname.machine machines then
+        Alcotest.failf "machine: got %s" uname.machine;
     end;
   ];
 
